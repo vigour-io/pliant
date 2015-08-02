@@ -1,7 +1,8 @@
 pliant
 =======
 
-# Usage 
+# Usage
+Let's walk through an example. To see the full example code, see the example project [vigour-io/pliable](https://github.com/vigour-io/pliable)
 ## 1. Create a configuration file to list the options our script may use
 
 **config.js**
