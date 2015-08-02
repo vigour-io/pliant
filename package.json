@@ -1,21 +1,21 @@
 {
-  "name": "pliable",
+  "name": "pliant",
   "version": "1.0.0",
-  "description": "pliable =======",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vigour-io/pliable.git"
+    "url": "git+https://github.com/vigour-io/pliant.git"
   },
   "author": "Shawn Inder",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vigour-io/pliable/issues"
+    "url": "https://github.com/vigour-io/pliant/issues"
   },
-  "homepage": "https://github.com/vigour-io/pliable#readme",
+  "homepage": "https://github.com/vigour-io/pliant#readme",
   "dependencies": {
     "commander": "^2.8.1",
     "promise": "^7.0.3",
