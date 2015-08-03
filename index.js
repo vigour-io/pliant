@@ -14,6 +14,9 @@ module.exports = exports = {}
 exports.fn = function (fn, config) {
 	configure(config)
 	return function (options) {
+		if (!options) {
+			options = {}
+		}
 		return reduceFiles()
 			.then(function (fileConf) {
 				opts.merge(defaults)
