@@ -12,7 +12,8 @@ var opts = new VObj({})
 module.exports = exports = {}
 
 exports.fn = function (fn, config) {
-	configure(config)
+	var env = {}
+	configure(config, env)
 	return function (options) {
 		if (!options) {
 			options = {}
@@ -21,6 +22,7 @@ exports.fn = function (fn, config) {
 			.then(function (fileConf) {
 				opts.merge(defaults)
 				opts.merge(fileConf)
+				opts.merge(env)
 				opts.merge(options)
 				return opts.raw
 			})
