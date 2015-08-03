@@ -82,7 +82,7 @@ exports.bin = function (fn, config) {
 
 function reduceFiles () {
 	files = (files)
-		? files.split(",")
+		? ((files.slit) ? files.split(",") : files)
 		: []
 	return files.reduce(function (prev, curr, indx, arry) {
 		return prev.then(function (res) {
