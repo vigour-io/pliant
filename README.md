@@ -87,7 +87,7 @@ We just have to pass our function and the config object to `pliant.fn`
 
 **index.js**
 ```js
-var pliant = require('../pliant')
+var pliant = require('pliant')
 	, main = require('./main.js')
 	, config = require('./config.js')
 
@@ -100,7 +100,7 @@ We just have to specify `node` as the script runner and pass our function and th
 **bin/index.js**
 ```js
 #!/usr/bin/env node
-var pliant = require('../../pliant')
+var pliant = require('pliant')
 	, config = require("../config")
 	, main = require('../main')
 
@@ -161,7 +161,8 @@ Listening on port 8001
   },
   "dependencies": {
     "compression": "^1.5.2",
-    "express": "^4.13.2"
+    "express": "^4.13.2",
+    "pliant": "git+ssh:git@github.com/vigour-io/pliant.git"
   },
   "scripts": {
     "start": "./bin/index.js -p 8001 --no-gzip",
