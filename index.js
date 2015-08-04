@@ -5,19 +5,20 @@ var VObj = require('vigour-js/object')
 var fs = require('vigour-fs')
 var readJSON = Promise.denodeify(fs.readJSON)
 var helpers = require('./helpers')
-var defaults = {}
-var files
-var opts = new VObj({})
 
 module.exports = exports = {}
 
 exports.fn = function (fn, config) {
+	var defaults = {}
 	var env = {}
-	configure(config, env)
+	var files
+	var opts = new VObj({})
+
 	return function (options) {
 		if (!options) {
 			options = {}
 		}
+		configure(config, defaults, files, env)
 		return reduceFiles()
 			.then(function (fileConf) {
 				opts.merge(defaults)
@@ -38,8 +39,11 @@ function factory (fn) {
 }
 
 exports.bin = function (fn, config) {
+	var defaults = {}
 	var env = {}
 	var cli = {}
+	var files
+	var opts = new VObj({})
 	var key
 	var entry
 	var getter
@@ -48,7 +52,7 @@ exports.bin = function (fn, config) {
 	program.version("1.0.0") // TODO
 		.usage("[options]")
 
-	configure(config, env, cli)
+	configure(config, defaults, files, env, cli)
 
 	program.parse(process.argv)
 
@@ -71,7 +75,7 @@ exports.bin = function (fn, config) {
 	if (program.files) {
 		files = program.files
 	}
-	reduceFiles()
+	reduceFiles(files)
 		.then(function (fileConf) {
 			opts.merge(defaults)
 			opts.merge(fileConf)
@@ -82,7 +86,7 @@ exports.bin = function (fn, config) {
 		.then(factory(fn))
 }
 
-function reduceFiles () {
+function reduceFiles (files) {
 	files = (files)
 		? ((files.split) ? files.split(",") : files)
 		: []
@@ -114,7 +118,7 @@ function reduceFiles () {
 		})
 }
 
-function configure (config, env, cli) {
+function configure (config, defaults, files, env, cli) {
 	var key
 	var entry
 	var value
