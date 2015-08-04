@@ -5,7 +5,7 @@ pliant
 Let's walk through an example. To see the full example code, see the example project [vigour-io/pliable](https://github.com/vigour-io/pliable)
 ## 1. Create a configuration file to list the options our script may use
 
-**config.js**
+[**config.js**](https://github.com/vigour-io/pliable/blob/master/config.js)
 ```js
 var path = require('path')
 
@@ -46,7 +46,7 @@ exports.files =
 ## 2. Adhere to the pliant contract
 We'll make the point of entry of our script a function which expects a single options argument
 
-**main.js**
+[**main.js**](https://github.com/vigour-io/pliable/blob/master/main.js)
 ```js
 // Let's make a web server as an example
 var express = require('express')
@@ -72,7 +72,7 @@ module.exports = exports = function (opts) {
 
 This sample script is a web server. For the sake of completeness, let's include an asset for it to serve:
 
-**public/index.html**
+[**public/index.html**](https://github.com/vigour-io/pliable/blob/master/public/index.html)
 ```html
 <!DOCTYPE html>
 <html>
@@ -85,7 +85,7 @@ This sample script is a web server. For the sake of completeness, let's include 
 ## 3. Create a requireable module
 We just have to pass our function and the config object to `pliant.fn`
 
-**index.js**
+[**index.js**](https://github.com/vigour-io/pliable/blob/master/index.js)
 ```js
 var pliant = require('pliant')
 	, main = require('./main.js')
@@ -97,7 +97,7 @@ module.exports = exports = pliant.fn(main, config)
 ## 4. Create an executable
 We just have to specify `node` as the script runner and pass our function and the config object to `pliant.bin`
 
-**bin/index.js**
+[**bin/index.js**](https://github.com/vigour-io/pliable/blob/master/bin/index.js)
 ```js
 #!/usr/bin/env node
 var pliant = require('pliant')
@@ -111,7 +111,7 @@ pliant.bin(main, config)
 
 ### We can require it and pass it an options object
 
-**test.js**
+[**test.js**](https://github.com/vigour-io/pliable/blob/master/test.js)
 ```js
 var http = require('http')
 var start = require('./index.js')
@@ -150,9 +150,10 @@ Listening on port 8001
 
 ```
 
-### We can pass it a list of files to read configuration from. `package.json` looks like a good candidate
+### We can pass it a list of files to read configuration from.
+`package.json` looks like a good candidate
 
-**package.json**
+[**package.json**](https://github.com/vigour-io/pliable/blob/master/package.json)
 ```json
 {
   "main": "index.js",
