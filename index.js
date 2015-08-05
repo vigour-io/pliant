@@ -18,8 +18,8 @@ exports.fn = function (fn, config) {
 		if (!options) {
 			options = {}
 		}
-		configure(config, defaults, files, env)
-		return reduceFiles()
+		files = configure(config, defaults, env, void 0, options)
+		return reduceFiles(files)
 			.then(function (fileConf) {
 				opts.merge(defaults)
 				opts.merge(fileConf)
@@ -52,7 +52,7 @@ exports.bin = function (fn, config) {
 	program
 		.usage("[options]")
 
-	configure(config, defaults, files, env, cli)
+	files = configure(config, defaults, env, cli)
 
 	program.parse(process.argv)
 
@@ -86,42 +86,11 @@ exports.bin = function (fn, config) {
 		.then(factory(fn))
 }
 
-function reduceFiles (files) {
-	files = (files)
-		? ((files.split) ? files.split(",") : files)
-		: []
-	return files.reduce(function (prev, curr, indx, arry) {
-		return prev.then(function (res) {
-			return (readJSON(path.isAbsolute(curr)
-					? curr
-					: path.join(process.cwd(), curr))
-				.then(function (obj) {
-					res.merge(obj)
-					return res
-				}
-				, function (reason) {
-					log.warn("Can't read file", curr)
-					return res
-				})
-				.catch(function (reason) {
-					reason.filePath = curr
-					log.error("Can't parse or merge", curr)
-				})
-			)
-		})
-	}, Promise.resolve(new VObj({})))
-		.then(function (res) {
-			return res.raw
-		})
-		.catch(function (reason) {
-			log.error("Oops", reason, reason.stack)
-		})
-}
-
-function configure (config, defaults, files, env, cli) {
+function configure (config, defaults, env, cli, options) {
 	var key
 	var entry
 	var value
+	var files
 	if (cli && config.version) {
 		program.version(config.version)
 	}
@@ -159,11 +128,47 @@ function configure (config, defaults, files, env, cli) {
 			if (process.env[config.files.env])
 			files = process.env[config.files.env]
 		}
+		if (options && options.configFiles) {
+			files = options.configFiles
+		}
 	}
 	if (cli) {
 		program.option("-c, --files <paths>", "Comma-separated list of paths to config files\
 \n\tconfig priority: defaults > *files* > env > cli")
 	}
+	return files
+}
+
+function reduceFiles (files) {
+	files = (files)
+		? ((files.split) ? files.split(",") : files)
+		: []
+	return files.reduce(function (prev, curr, indx, arry) {
+		return prev.then(function (res) {
+			return (readJSON(path.isAbsolute(curr)
+					? curr
+					: path.join(process.cwd(), curr))
+				.then(function (obj) {
+					res.merge(obj)
+					return res
+				}
+				, function (reason) {
+					log.warn("Can't read file", curr)
+					return res
+				})
+				.catch(function (reason) {
+					reason.filePath = curr
+					log.error("Can't parse or merge", curr)
+				})
+			)
+		})
+	}, Promise.resolve(new VObj({})))
+		.then(function (res) {
+			return res.raw
+		})
+		.catch(function (reason) {
+			log.error("Oops", reason, reason.stack)
+		})
 }
 
 function set (obj, key, val, tag) {
