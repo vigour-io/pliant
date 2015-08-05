@@ -49,7 +49,7 @@ exports.bin = function (fn, config) {
 	var getter
 	var value
 
-	program.version("1.0.0") // TODO
+	program
 		.usage("[options]")
 
 	configure(config, defaults, files, env, cli)
@@ -122,6 +122,9 @@ function configure (config, defaults, files, env, cli) {
 	var key
 	var entry
 	var value
+	if (cli && config.version) {
+		program.version(config.version)
+	}
 	for (key in config.items) {
 		entry = config.items[key].def
 		if (entry) {
@@ -159,7 +162,7 @@ function configure (config, defaults, files, env, cli) {
 	}
 	if (cli) {
 		program.option("-c, --files <paths>", "Comma-separated list of paths to config files\
-			config priority: defaults > *files* > env > cli")
+\n\tconfig priority: defaults > *files* > env > cli")
 	}
 }
 

@@ -8,8 +8,10 @@ Let's walk through an example. To see the full example code, see the example pro
 [**config.js**](https://github.com/vigour-io/pliable/blob/master/config.js)
 ```js
 var path = require('path')
-
+var version = require('./package.json').version
 module.exports = exports = {}
+
+exports.version = version
 
 /**
  * Give each option (item)
@@ -156,6 +158,7 @@ Listening on port 8001
 [**package.json**](https://github.com/vigour-io/pliable/blob/master/package.json)
 ```json
 {
+  "version": "1.0.1",
   "main": "index.js",
   "bin": {
     "pliable": "bin/index.js"
