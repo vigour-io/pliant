@@ -9,12 +9,12 @@ var helpers = require('./helpers')
 module.exports = exports = {}
 
 exports.fn = function (fn, config) {
-	var defaults = {}
-	var env = {}
-	var files
-	var opts = new VObj({})
-
 	return function (options) {
+		var defaults = {}
+		var env = {}
+		var files
+		var opts = new VObj({})
+		// console.log("OPTS", options)
 		if (!options) {
 			options = {}
 		}
