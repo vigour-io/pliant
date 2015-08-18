@@ -18,8 +18,9 @@
   "homepage": "https://github.com/vigour-io/pliant#readme",
   "dependencies": {
     "commander": "^2.8.1",
+    "npmlog": "^1.2.1",
     "promise": "^7.0.3",
-    "vigour-js": "git+ssh://git@github.com:vigour-io/vigour-js.git",
-    "vigour-fs": "git+ssh://git@github.com:vigour-io/vigour-fs.git"
+    "vigour-fs": "git+ssh://git@github.com:vigour-io/vigour-fs.git",
+    "vigour-js": "git+ssh://git@github.com:vigour-io/vigour-js.git"
   }
 }

@@ -1,4 +1,5 @@
 var path = require('path')
+var log = require('npmlog')
 var program = require('commander')
 var Promise = require('promise')
 var VObj = require('vigour-js/object')
@@ -145,20 +146,17 @@ function reduceFiles (files) {
 		: []
 	return files.reduce(function (prev, curr, indx, arry) {
 		return prev.then(function (res) {
-			return (readJSON(path.isAbsolute(curr)
-					? curr
-					: path.join(process.cwd(), curr))
+			var filePath =  path.isAbsolute(curr)
+				? curr
+				: path.join(process.cwd(), curr)
+			return (readJSON(filePath)
+				.catch(function (reason) {
+					log.error("The following config file cannot be read or parsed:", curr)
+					throw reason
+				})
 				.then(function (obj) {
 					res.merge(obj)
 					return res
-				}
-				, function (reason) {
-					log.warn("Can't read file", curr)
-					return res
-				})
-				.catch(function (reason) {
-					reason.filePath = curr
-					log.error("Can't parse or merge", curr)
 				})
 			)
 		})
