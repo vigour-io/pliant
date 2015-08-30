@@ -4,23 +4,35 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/gaston tests node"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vigour-io/pliant.git"
   },
-  "author": "Shawn Inder",
+  "keywords": [
+    "cli",
+    "environment",
+    "config"
+  ],
+  "author": "Vigour",
+  "contributors": [
+    "Shawn Inder <shawn@vigour.io>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vigour-io/pliant/issues"
   },
   "homepage": "https://github.com/vigour-io/pliant#readme",
+  "engines": {
+
+  },
   "dependencies": {
     "commander": "^2.8.1",
     "npmlog": "^1.2.1",
     "promise": "^7.0.3",
     "vigour-fs": "git+ssh://git@github.com:vigour-io/vigour-fs.git",
-    "vigour-js": "git+ssh://git@github.com:vigour-io/vigour-js.git"
+    "vigour-js": "git+ssh://git@github.com:vigour-io/vigour-js.git",
+    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git"
   }
 }
