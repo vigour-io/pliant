@@ -33,7 +33,6 @@
     "npmlog": "^1.2.1",
     "promise": "^7.0.3",
     "vigour-fs": "^1.1.1",
-    "vigour-fs-promised": "^1.0.1",
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git"
   },
   "devDependencies": {
