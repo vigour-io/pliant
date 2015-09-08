@@ -2,9 +2,9 @@
   "name": "pliant",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gaston tests node"
+    "test": "./node_modules/.bin/gaston test node"
   },
   "repository": {
     "type": "git",
@@ -25,14 +25,18 @@
   },
   "homepage": "https://github.com/vigour-io/pliant#readme",
   "engines": {
-
+    "node": ">=0.12.0"
   },
   "dependencies": {
     "commander": "^2.8.1",
+    "lodash": "^3.10.1",
     "npmlog": "^1.2.1",
     "promise": "^7.0.3",
-    "vigour-fs": "git+ssh://git@github.com:vigour-io/vigour-fs.git",
-    "vigour-js": "git+ssh://git@github.com:vigour-io/vigour-js.git",
+    "vigour-fs": "^1.1.1",
+    "vigour-fs-promised": "^1.0.1",
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git"
+  },
+  "devDependencies": {
+    "gaston": "^0.11.0"
   }
 }
