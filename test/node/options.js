@@ -2,7 +2,7 @@
 var program = require('commander')
 var cloneDeep = require('lodash/lang/cloneDeep')
 var argv = cloneDeep(process.argv)
-var env = cloneDeep(process.env)
+// var env = cloneDeep(process.env)
 var fn = require('../../lib/fn')
 var bin = require('../../lib/bin')
 var path = require('path')
@@ -63,8 +63,8 @@ describe('fn', function () {
     it('should provide defaults'
     , function () {
       var main = fn(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(defVal)
-        expect(opts.vigour.speed.$val).to.equal(true)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(defVal)
+        expect(opts.vigour.speed.val).to.equal(true)
       }, true)
       return main()
     })
@@ -72,8 +72,8 @@ describe('fn', function () {
     it('files override defaults'
     , function () {
       var main = fn(configWithFiles, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(fileVal)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(fileVal)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
       return main()
     })
@@ -83,8 +83,8 @@ describe('fn', function () {
       process.env[envVal] = newEnv
       process.env[speedEnv] = 'false'
       var main = fn(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newEnv)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newEnv)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
       return main()
     })
@@ -94,8 +94,8 @@ describe('fn', function () {
       process.env[envVal] = newEnv
       process.env[speedEnv] = 'false'
       var main = fn(configWithFiles, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newEnv)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newEnv)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
       return main()
     })
@@ -103,8 +103,8 @@ describe('fn', function () {
     it('parameters override defaults'
     , function () {
       var main = fn(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newParam)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newParam)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
       return main({
         vigour: {
@@ -121,8 +121,8 @@ describe('fn', function () {
       process.env[envVal] = newEnv
       process.env[speedEnv] = 'false'
       var main = fn(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newParam)
-        expect(opts.vigour.speed.$val).to.equal(true)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newParam)
+        expect(opts.vigour.speed.val).to.equal(true)
       }, true)
 
       return main({
@@ -138,8 +138,8 @@ describe('fn', function () {
     it('parameters override files'
     , function () {
       var main = fn(configWithFiles, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newParam)
-        expect(opts.vigour.speed.$val).to.equal(true)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newParam)
+        expect(opts.vigour.speed.val).to.equal(true)
       }, true)
 
       return main({
@@ -270,16 +270,16 @@ describe('bin', function () {
     it('should provide defaults'
     , function () {
       return bin(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(defVal)
-        expect(opts.vigour.speed.$val).to.equal(true)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(defVal)
+        expect(opts.vigour.speed.val).to.equal(true)
       }, true)
     })
 
     it('files override defaults'
     , function () {
       return bin(configWithFiles, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(fileVal)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(fileVal)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
     })
 
@@ -288,8 +288,8 @@ describe('bin', function () {
       process.env[envVal] = newEnv
       process.env[speedEnv] = 'false'
       return bin(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newEnv)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newEnv)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
     })
 
@@ -298,8 +298,8 @@ describe('bin', function () {
       process.env[envVal] = newEnv
       process.env[speedEnv] = 'false'
       return bin(configWithFiles, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(newEnv)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(newEnv)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
     })
 
@@ -307,8 +307,8 @@ describe('bin', function () {
     , function () {
       process.argv.push('--surgeon=' + cliArg)
       return bin(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(cliArg)
-        expect(opts.vigour.speed.$val).to.equal(true)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(cliArg)
+        expect(opts.vigour.speed.val).to.equal(true)
       }, true)
     })
 
@@ -317,8 +317,8 @@ describe('bin', function () {
       process.argv.push('-s', cliArg)
       process.argv.push('--no-speed')
       return bin(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(cliArg)
-        expect(opts.vigour.speed.$val).to.equal(false)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(cliArg)
+        expect(opts.vigour.speed.val).to.equal(false)
       }, true)
     })
 
@@ -327,7 +327,7 @@ describe('bin', function () {
       process.env[envVal] = newEnv
       process.argv.push('-s', cliArg)
       return bin(config, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(cliArg)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(cliArg)
       }, true)
     })
 
@@ -335,7 +335,7 @@ describe('bin', function () {
     , function () {
       process.argv.push('-s', cliArg)
       return bin(configWithFiles, function (opts) {
-        expect(opts.vigour.plastic.surgeon.$val).to.equal(cliArg)
+        expect(opts.vigour.plastic.surgeon.val).to.equal(cliArg)
       }, true)
     })
   })
