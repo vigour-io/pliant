@@ -1,10 +1,10 @@
 {
-  "name": "pliant",
+  "name": "vigour-pliant",
   "version": "1.0.1",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gaston test node"
+    "test": "gaston test -r node"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "contributors": [
     "Shawn Inder <shawn@vigour.io>"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vigour-io/pliant/issues"
   },
@@ -33,6 +33,6 @@
     "npmlog": "^1.2.1",
     "promise": "^7.0.3",
     "vigour-fs-promised": "^2.0.0",
-    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
+    "vigour-js": "^0.2.2"
   }
 }
